@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <!-- Short description for the website -->
+    <meta content="توضیحی برای صفحه وبسایت" name="description">
+    <!-- Keywords for search engines -->
+    <meta content="HTML,CSS,BootStrap,JavaScript" name="keywords">
+    <!-- Website author -->
+    <meta content="Siamak Bagheri" name="author">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>+ Pig Game +</title>
+    <!-- Favicons -->
+    <link href="#" rel="icon">
+    <link href="#" rel="apple-touch-icon">
+    <!-- Template Main CSS File -->
+    <link href="./assets/css/style.css" rel="stylesheet">
+</head>
+
+<body id="body">
+    <main id="main">
+        <!-- بازیکن اول شروع کننده -->
+        <section class="player player--0 player--active">
+            <h2 class="name" id="name--0">بازیکن اول</h2>
+            <p class="score" id="score--0">43</p>
+            <div class="current">
+                <p class="current-label">Current</p>
+                <p class="current-score" id="current--0">0</p>
+            </div>
+        </section>
+        <!-- بازیکن دوم -->
+        <section class="player player--1">
+            <h2 class="name" id="name--1">بازیکن دوم</h2>
+            <p class="score" id="score--1">24</p>
+            <div class="current">
+                <p class="current-label">Current</p>
+                <p class="current-score" id="current--1">0</p>
+            </div>
+        </section>
+        <!-- عکس های تاس که بصورت رندوم نمایش داده میشوند -->
+        <img alt="Playing dice" class="dice" src="./assets/images/dice-1.png">
+        <button class="btn btn--new">دوباره 🔄</button>
+        <button class="btn btn--roll">شانس 🎲</button>
+        <button class="btn btn--hold">ذخیره امتیاز 📥</button>
+    </main>
+    <!-- Template Main JS File -->
+    <script src="./assets/js/script.js">
+    </script>
+</body>
+
+</html>
