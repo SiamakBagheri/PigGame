@@ -22,7 +22,7 @@ html {
 }
 
 body#body {
-    font-family: 'Vazirmatn';
+    font-family: Vazirmatn;
     font-weight: 400;
     height: 100vh;
     color: #333;
@@ -149,6 +149,7 @@ button.btn {
     color: #444;
     background: none;
     border: none;
+    font-family: Vazirmatn;
     font-size: 2.7rem;
     text-transform: uppercase;
     cursor: pointer;

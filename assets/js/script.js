@@ -1,34 +1,39 @@
-var scores, roundScores, activePlayer;
+var scores, roundScores, activePlayer, gamePlaying;
 init();
 document.querySelector('.btn--roll').addEventListener('click', function() {
-    // اعداد تصادفی بین 1 تا 6
-    var dice = Math.floor(Math.random() * 6) + 1;
-    var diceDOM = document.querySelector('.dice');
-    // اینجا از نان در میاریم تا نمایش داده شه
-    diceDOM.style.display = 'block';
-    // اینجا متغیر تاس رو بجایی شماره های عکس میزاریم
-    diceDOM.src = './assets/images/dice-' + dice + '.png';
-    // اینجا میگیم اگه یک نبود
-    if (dice !== 1) {
-        // بیا اضافه کن به امتیاز هر نوبت
-        roundScores += dice;
-        document.querySelector('#current--' + activePlayer).textContent = roundScores;
-    } else {
-        // امتیاز نوبت رو صفر کن و بازیکن رو تغییر بده
-        nextPlayer();
-    }
+    if (gamePlaying) {
+        // اعداد تصادفی بین 1 تا 6
+        var dice = Math.floor(Math.random() * 6) + 1;
+        var diceDOM = document.querySelector('.dice');
+        // اینجا از نان در میاریم تا نمایش داده شه
+        diceDOM.style.display = 'block';
+        // اینجا متغیر تاس رو بجایی شماره های عکس میزاریم
+        diceDOM.src = './assets/images/dice-' + dice + '.png';
+        // اینجا میگیم اگه یک نبود
+        if (dice !== 1) {
+            // بیا اضافه کن به امتیاز هر نوبت
+            roundScores += dice;
+            document.querySelector('#current--' + activePlayer).textContent = roundScores;
+        } else {
+            // امتیاز نوبت رو صفر کن و بازیکن رو تغییر بده
+            nextPlayer();
+        };
+    };
 });
 document.querySelector('.btn--hold').addEventListener('click', function() {
-    scores[activePlayer] += roundScores;
-    document.querySelector('#score--' + activePlayer).textContent = scores[activePlayer];
-    if (scores[activePlayer] >= 10) {
-        document.querySelector('.dice').style.display = 'none';
-        document.querySelector('#name--' + activePlayer).textContent = 'تبریک، شما برنده شدید';
-        document.querySelector('.player--' + activePlayer).classList.remove('player--active');
-        document.querySelector('.player--' + activePlayer).classList.add('player--winner');
-    } else {
-        // امتیاز نوبت رو صفر کن و بازیکن رو تغییر بده
-        nextPlayer();
+    if (gamePlaying) {
+        scores[activePlayer] += roundScores;
+        document.querySelector('#score--' + activePlayer).textContent = scores[activePlayer];
+        if (scores[activePlayer] >= 100) {
+            document.querySelector('.dice').style.display = 'none';
+            document.querySelector('#name--' + activePlayer).textContent = 'تبریک، شما برنده شدید';
+            document.querySelector('.player--' + activePlayer).classList.remove('player--active');
+            document.querySelector('.player--' + activePlayer).classList.add('player--winner');
+            gamePlaying = false;
+        } else {
+            // امتیاز نوبت رو صفر کن و بازیکن رو تغییر بده
+            nextPlayer();
+        };
     };
 });
 
@@ -54,10 +59,23 @@ function init() {
     roundScores = 0;
     // صفر بازیکن اول و یک بازیکن دوم
     activePlayer = 0;
-    // اینجا نان میکنیم در شروع کار نمایش داده نشود
+
+    gamePlaying = true
+        // اینجا نان میکنیم در شروع کار نمایش داده نشود
     document.querySelector('.dice').style.display = 'none';
+    // مقادير امتيازها و امتيازهاي هر نوبت رو صفر ميكنيم
     document.getElementById('score--0').textContent = '0';
     document.getElementById('score--1').textContent = '0';
     document.getElementById('current--0').textContent = '0';
     document.getElementById('current--1').textContent = '0';
+    // اسم هارو به حالت اولش برمگردونيم
+    document.getElementById('name--0').textContent = 'بازیکن اول';
+    document.getElementById('name--1').textContent = 'بازیکن دوم';
+    // و فعال يا برنده بودن رو هم به حالت پيش فرض برميگردونيم
+    document.querySelector('.player--0').classList.remove('player--active');
+    document.querySelector('.player--1').classList.remove('player--active');
+    document.querySelector('.player--0').classList.remove('player--winner');
+    document.querySelector('.player--1').classList.remove('player--winner');
+    // حالت اكتيو رو به ژلير اول ميدهيم
+    document.querySelector('.player--0').classList.add('player--active');
 };
